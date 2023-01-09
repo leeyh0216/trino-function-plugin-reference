@@ -13,10 +13,13 @@
  */
 package com.leeyh0216.trino.udf;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.leeyh0216.trino.udf.lambda.SampleUnaryLambdaFunction;
-import com.leeyh0216.trino.udf.type.PersonFunctions;
+import com.leeyh0216.trino.udf.type.object.ObjectPersonFunctions;
+import com.leeyh0216.trino.udf.type.object.ObjectPersonType;
 import io.trino.spi.Plugin;
+import io.trino.spi.type.Type;
 
 import java.util.Set;
 
@@ -24,8 +27,13 @@ public class SampleFunctionPlugin
         implements Plugin
 {
     @Override
+    public Iterable<Type> getTypes() {
+        return ImmutableList.of(ObjectPersonType.OBJECT_PERSON);
+    }
+
+    @Override
     public Set<Class<?>> getFunctions()
     {
-        return ImmutableSet.<Class<?>>builder().add(SampleUnaryLambdaFunction.class, PersonFunctions.class).build();
+        return ImmutableSet.<Class<?>>builder().add(SampleUnaryLambdaFunction.class, ObjectPersonFunctions.class).build();
     }
 }
