@@ -27,7 +27,8 @@ public class SampleFunctionPlugin
         implements Plugin
 {
     @Override
-    public Iterable<Type> getTypes() {
+    public Iterable<Type> getTypes()
+    {
         return ImmutableList.of(ObjectPersonType.OBJECT_PERSON);
     }
 
